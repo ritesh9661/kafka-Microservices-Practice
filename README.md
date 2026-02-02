@@ -1,108 +1,102 @@
-🧩 Spring Boot Microservices with Kafka – Practice Project
 
-This project demonstrates a Microservices Architecture built using Spring Boot, where services communicate asynchronously using Apache Kafka. It covers real-world backend concepts like JPA persistence, event-driven communication, multithreading, and clean service separation.
+## 🧩 Spring Boot Microservices with Kafka – Practice Project
 
-🏗️ Microservices in this Project
-🔹 base-domain
+This project demonstrates a **Microservices Architecture** built using **Spring Boot**, where services communicate asynchronously using **Apache Kafka**. It covers real-world backend concepts like **JPA persistence, event-driven communication, multithreading, and clean service separation**.
 
-Common DTOs, Events, and Models shared across services
+---
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/bbb663a9-50a1-48a0-a595-e3a77fdb5853" />
 
-Avoids duplication and ensures loose coupling
+## 🏗️ Microservices in this Project
 
-🔹 order-service
+### 🔹 base-domain
 
-REST APIs to create and manage orders
+* Common **DTOs, Events, and Models** shared across services
+* Avoids duplication and ensures loose coupling
 
-Uses Spring Data JPA with MySQL
+### 🔹 order-service
 
-Publishes Order events to Kafka after saving order
+* REST APIs to create and manage orders
+* Uses **Spring Data JPA** with MySQL
+* Publishes **Order events** to Kafka after saving order
 
-🔹 stock-service
+### 🔹 stock-service
 
-Consumes order events from Kafka
+* Consumes order events from Kafka
+* Validates and updates product stock
+* Publishes stock status events
 
-Validates and updates product stock
+### 🔹 email-service
 
-Publishes stock status events
+* Consumes Kafka events
+* Sends email notifications asynchronously using `@Async`
+* Demonstrates **multithreading**
 
-🔹 email-service
+---
 
-Consumes Kafka events
+## 🔄 Event Flow
 
-Sends email notifications asynchronously using @Async
-
-Demonstrates multithreading
-
-🔄 Event Flow
+```
 Client → order-service → Kafka → stock-service → Kafka → email-service
+```
 
+---
 
-All communication is event-driven and loosely coupled.
+## 🖼️ Architecture Diagram
 
-🛠️ Tech Stack
+![Architecture Diagram](architecture-diagram.png)
 
-Java 17
+---
 
-Spring Boot
+## 🛠️ Tech Stack
 
-Spring Data JPA
+* Java 17
+* Spring Boot
+* Spring Data JPA
+* Apache Kafka
+* MySQL
+* Lombok
+* Maven
 
-Apache Kafka
+---
 
-MySQL
+## 🚀 Concepts Covered
 
-Lombok
+* Microservices Architecture
+* Kafka Producer & Consumer
+* Event-Driven Communication
+* JPA & Database Persistence
+* Asynchronous Processing (`@Async`)
+* Constructor-based Dependency Injection
+* Clean project structure
 
-Maven
+---
 
-🚀 Concepts Covered
+## ▶️ How to Run
 
-Microservices Architecture
+1. Start Zookeeper and Kafka
+2. Create required topics:
 
-Kafka Producer & Consumer
+   * `order-topic`
+   * `stock-topic`
+3. Run services in order:
 
-Event-Driven Communication
+   * order-service
+   * stock-service
+   * email-service
+4. Use Postman to call order APIs
 
-JPA & Database Persistence
+---
 
-Asynchronous Processing (@Async)
+## 📌 Future Improvements
 
-Constructor-based Dependency Injection
+* Docker & Docker Compose
+* API Gateway
+* Eureka Service Discovery
+* Config Server
+* Monitoring & Tracing
 
-Clean project structure
+---
 
-▶️ How to Run
+## 🎯 Purpose
 
-Start Zookeeper and Kafka
-
-Create required topics:
-
-order-topic
-
-stock-topic
-
-Run services:
-
-order-service
-
-stock-service
-
-email-service
-
-Use Postman to call order APIs
-
-📌 Future Improvements
-
-Docker & Docker Compose
-
-API Gateway
-
-Eureka Service Discovery
-
-Config Server
-
-Monitoring & Tracing
-
-🎯 Purpose
-
-This project is built for hands-on practice and interview preparation to understand how real-world Spring Boot microservices communicate using Kafka.
+This project is built for **hands-on practice** and **interview preparation** to understand how real-world Spring Boot microservices communicate using Kafka.
